@@ -1,4 +1,4 @@
-# 🚀 Universal AI Agent Skills
+# 🚀 AI Agent Skills
 
 A collection of production-grade skills, prompts, and architectural runbooks for AI coding agents and assistants (**Google Antigravity**, **Claude Code**, **Cursor**, **GitHub Copilot**, **Windsurf**, **Cline / Roo Code**, and more).
 
