@@ -29,7 +29,7 @@ Installing globally makes these skills available across all your workspaces in A
 New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config\skills"
 
 # 2. Clone the skills into your global config
-git clone https://github.com/<your-username>/<repo-name>.git "$HOME\.gemini\config\skills\agent-skills"
+git clone https://github.com/developerslearnit/skills.git "$HOME\.gemini\config\skills\agent-skills"
 ```
 
 > **Note:** If you only want to install a specific skill (e.g. `aspnet-core-scaffolding`):
@@ -43,7 +43,7 @@ git clone https://github.com/<your-username>/<repo-name>.git "$HOME\.gemini\conf
 mkdir -p ~/.gemini/config/skills
 
 # 2. Clone the repository
-git clone https://github.com/<your-username>/<repo-name>.git ~/.gemini/config/skills/agent-skills
+git clone https://github.com/developerslearnit/skills.git ~/.gemini/config/skills/agent-skills
 ```
 
 ---
@@ -54,7 +54,7 @@ To make a skill available to everyone working in a specific project repository, 
 
 #### Using Git Submodule:
 ```bash
-git submodule add https://github.com/<your-username>/<repo-name>.git .agents/skills/agent-skills
+git submodule add https://github.com/developerslearnit/skills.git .agents/skills/agent-skills
 ```
 
 #### Or Copy Directly:
