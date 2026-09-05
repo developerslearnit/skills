@@ -19,7 +19,6 @@ Author: **Adesina Mark Omoniyi**
 
 Agent skills are markdown-based execution guides (`SKILL.md`) that teach AI agents specific workflows, design patterns, and coding standards. Choose your tool below to install and activate them:
 
-<<<<<<< HEAD
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                           AI CODING ASSISTANTS                              │
@@ -29,33 +28,6 @@ Agent skills are markdown-based execution guides (`SKILL.md`) that teach AI agen
 ├───────────────────┼───────────────────┼───────────────────┼─────────────────┤
 │ Windsurf (Cascade)│  Cline / Roo Code │       Aider       │  Continue.dev   │
 └───────────────────┴───────────────────┴───────────────────┴─────────────────┘
-=======
-### Option 1: Global Installation (Recommended)
-
-Installing globally makes these skills available across all your workspaces in Antigravity.
-
-#### Windows (PowerShell):
-```powershell
-# 1. Create the global skills directory if it doesn't exist
-New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config\skills"
-
-# 2. Clone the skills into your global config
-git clone https://github.com/developerslearnit/skills.git "$HOME\.gemini\config\skills\agent-skills"
-```
-
-> **Note:** If you only want to install a specific skill (e.g. `aspnet-core-scaffolding`):
-> ```powershell
-> Copy-Item -Recurse -Force "aspnet-core-scaffolding" "$HOME\.gemini\config\skills\aspnet-core-scaffolding"
-> ```
-
-#### macOS / Linux (Bash):
-```bash
-# 1. Create the global skills directory
-mkdir -p ~/.gemini/config/skills
-
-# 2. Clone the repository
-git clone https://github.com/developerslearnit/skills.git ~/.gemini/config/skills/agent-skills
->>>>>>> 3c38d5603c061469cecc5c85e0e7b80569bc5e3f
 ```
 
 ---
@@ -64,16 +36,21 @@ git clone https://github.com/developerslearnit/skills.git ~/.gemini/config/skill
 
 Antigravity natively discovers skills placed in your global config or workspace root.
 
-#### Global Installation (Available across all workspaces)
+#### Option A: Global Installation (Available across all workspaces)
 
 - **Windows (PowerShell):**
   ```powershell
-  # 1. Create global skills directory
+  # 1. Create global skills directory if it doesn't exist
   New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config\skills"
 
   # 2. Clone repository into global skills
-  git clone https://github.com/<your-username>/<repo-name>.git "$HOME\.gemini\config\skills\agent-skills"
+  git clone https://github.com/developerslearnit/skills.git "$HOME\.gemini\config\skills\agent-skills"
   ```
+
+  > **Note:** If you only want to install a specific skill (e.g. `aspnet-core-scaffolding`):
+  > ```powershell
+  > Copy-Item -Recurse -Force "aspnet-core-scaffolding" "$HOME\.gemini\config\skills\aspnet-core-scaffolding"
+  > ```
 
 - **macOS / Linux (Bash):**
   ```bash
@@ -81,20 +58,27 @@ Antigravity natively discovers skills placed in your global config or workspace 
   mkdir -p ~/.gemini/config/skills
 
   # 2. Clone repository
-  git clone https://github.com/<your-username>/<repo-name>.git ~/.gemini/config/skills/agent-skills
+  git clone https://github.com/developerslearnit/skills.git ~/.gemini/config/skills/agent-skills
   ```
 
-#### Project-Level Installation (Workspace scoped)
-Place the skill inside the `.agents/skills/` folder at your project root:
-```bash
-<<<<<<< HEAD
-# Add as a submodule or copy into your project
-mkdir -p .agents/skills
-cp -r /path/to/skills/* .agents/skills/
-=======
-git submodule add https://github.com/developerslearnit/skills.git .agents/skills/agent-skills
->>>>>>> 3c38d5603c061469cecc5c85e0e7b80569bc5e3f
-```
+#### Option B: Project-Level Installation (Workspace scoped)
+Place the skill inside `.agents/skills/` at your project root:
+
+- **Using Git Submodule:**
+  ```bash
+  git submodule add https://github.com/developerslearnit/skills.git .agents/skills/agent-skills
+  ```
+
+- **Or Direct Copy:**
+  ```text
+  your-project-root/
+  └── .agents/
+      └── skills/
+          ├── aspnet-core-scaffolding/
+          │   └── SKILL.md
+          └── explain-this/
+              └── SKILL.md
+  ```
 
 ---
 
