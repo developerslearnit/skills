@@ -1,0 +1,15 @@
+{
+    "name": "explain-this",
+    "version": "1.0.0",
+    "description": "Explains code snippets, functions, classes, and architectural components with structured clarity",
+    "author": "Adesina Mark Omoniyi",
+    "entryPoint": "SKILL.md",
+    "tags": [
+        "code-explanation",
+        "dotnet",
+        "csharp",
+        "clean-architecture",
+        "cqrs",
+        "code-analysis"
+    ]
+}
