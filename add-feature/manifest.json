@@ -1,0 +1,19 @@
+{
+    "name": "add-feature",
+    "version": "1.0.0",
+    "description": "Scaffolds vertical slice features into ASP.NET Core Clean Architecture solutions with interactive database table and feature requirement gathering.",
+    "author": "Adesina Mark Omoniyi",
+    "entryPoint": "SKILL.md",
+    "tags": [
+        "dotnet",
+        "aspnetcore",
+        "clean-architecture",
+        "cqrs",
+        "feature-scaffolding",
+        "dapper",
+        "efcore",
+        "result-pattern",
+        "dispatcher",
+        "fluentvalidation"
+    ]
+}

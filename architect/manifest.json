@@ -1,0 +1,17 @@
+{
+    "name": "architect",
+    "version": "1.0.0",
+    "description": "Think through software design and architecture like a senior engineer before writing code. Aligns on ubiquitous domain vocabulary, surfaces high-impact architectural decisions with opinionated recommendations, and produces a battle-tested implementation blueprint.",
+    "author": "Adesina Mark Omoniyi",
+    "entryPoint": "SKILL.md",
+    "tags": [
+        "software-architecture",
+        "system-design",
+        "decision-framework",
+        "senior-engineer",
+        "planning",
+        "implementation-plan",
+        "domain-driven-design",
+        "trade-offs"
+    ]
+}

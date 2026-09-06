@@ -4,6 +4,8 @@ A collection of production-grade skills, prompts, and architectural runbooks for
 
 Author: **Adesina Mark Omoniyi**
 
+📖 **[Read the 4-Phase Application Building Workflow Guide](./APPLICATION-WORKFLOW.md)** to see how these skills connect end-to-end.
+
 ---
 
 ## 📚 Skills Catalog
@@ -11,6 +13,8 @@ Author: **Adesina Mark Omoniyi**
 | Skill | Version | Description | Tags |
 | :--- | :--- | :--- | :--- |
 | [**`aspnet-core-scaffolding`**](./aspnet-core-scaffolding/) | `1.0.0` | Enterprise ASP.NET Core standards: Clean Architecture, CQRS, Dapper, Dispatcher, FluentValidation, and Result Pattern. | `dotnet`, `aspnetcore`, `clean-architecture`, `cqrs`, `dapper` |
+| [**`add-feature`**](./add-feature/) | `1.0.0` | Interactive vertical slice feature scaffolding with database table, schema, and domain requirement discovery. | `dotnet`, `aspnetcore`, `clean-architecture`, `cqrs`, `feature-scaffolding` |
+| [**`architect`**](./architect/) | `1.0.0` | Senior engineering architectural thinking partner: domain vocabulary alignment, trade-offs, and implementation blueprints. | `software-architecture`, `system-design`, `senior-engineer`, `planning` |
 | [**`explain-this`**](./explain-this/) | `1.0.0` | Structured deep-dive code analysis, execution flow breakdowns, architectural reviews, and edge-case dissection. | `code-explanation`, `code-analysis`, `dotnet`, `csharp` |
 
 ---
@@ -76,6 +80,10 @@ Place the skill inside `.agents/skills/` at your project root:
       └── skills/
           ├── aspnet-core-scaffolding/
           │   └── SKILL.md
+          ├── add-feature/
+          │   └── SKILL.md
+          ├── architect/
+          │   └── SKILL.md
           └── explain-this/
               └── SKILL.md
   ```
@@ -92,8 +100,10 @@ Claude Code automatically reads instructions from `CLAUDE.md` in your project ro
   ```markdown
   # Project Guidelines & Agent Skills
 
-  When scaffolding ASP.NET Core endpoints or explaining complex logic, follow the instructions in:
+  When scaffolding ASP.NET Core endpoints, adding features, architecting solutions, or explaining complex logic, follow the instructions in:
   - `.agents/skills/aspnet-core-scaffolding/SKILL.md`
+  - `.agents/skills/add-feature/SKILL.md`
+  - `.agents/skills/architect/SKILL.md`
   - `.agents/skills/explain-this/SKILL.md`
   ```
 
@@ -126,6 +136,8 @@ Create `.cursor/rules/` in your project root and copy the skills with the `.mdc`
   ```powershell
   New-Item -ItemType Directory -Force -Path ".cursor\rules"
   Copy-Item -Path "aspnet-core-scaffolding\SKILL.md" -Destination ".cursor\rules\aspnet-core-scaffolding.mdc"
+  Copy-Item -Path "add-feature\SKILL.md" -Destination ".cursor\rules\add-feature.mdc"
+  Copy-Item -Path "architect\SKILL.md" -Destination ".cursor\rules\architect.mdc"
   Copy-Item -Path "explain-this\SKILL.md" -Destination ".cursor\rules\explain-this.mdc"
   ```
 
@@ -133,6 +145,8 @@ Create `.cursor/rules/` in your project root and copy the skills with the `.mdc`
   ```bash
   mkdir -p .cursor/rules
   cp aspnet-core-scaffolding/SKILL.md .cursor/rules/aspnet-core-scaffolding.mdc
+  cp add-feature/SKILL.md .cursor/rules/add-feature.mdc
+  cp architect/SKILL.md .cursor/rules/architect.mdc
   cp explain-this/SKILL.md .cursor/rules/explain-this.mdc
   ```
 
@@ -174,6 +188,12 @@ You can configure Copilot Chat custom instructions in your `.vscode/settings.jso
   "github.copilot.chat.codeGeneration.instructions": [
     {
       "file": ".agents/skills/aspnet-core-scaffolding/SKILL.md"
+    },
+    {
+      "file": ".agents/skills/add-feature/SKILL.md"
+    },
+    {
+      "file": ".agents/skills/architect/SKILL.md"
     },
     {
       "file": ".agents/skills/explain-this/SKILL.md"
@@ -260,6 +280,14 @@ Once installed, AI assistants will adhere to these skill guidelines. You can tri
   > *"Scaffold a new CreateSupportTicket command handler using CQRS and the Result pattern."*
   > *"Create a repository and query handler for getting tickets with Dapper and pagination."*
 
+- **For Adding Features Interactively**:
+  > *"Add a new feature to manage customer subscriptions, ask me for table and validation details."*
+  > *"Add a CancelOrder command and endpoint to the existing Orders feature slice."*
+
+- **For Architectural Thinking & Planning**:
+  > *"Act as an architect and help me design a multi-tenant payment reconciliation engine."*
+  > *"Let's think through the architecture for a real-time event streaming pipeline before coding."*
+
 - **For Code Explanation**:
   > *"Explain how this Dispatcher middleware handles pipeline execution."*
   > *"Walk me through the TicketRoutingEngine class and identify potential failure points."*
@@ -274,6 +302,14 @@ skills/
 │   ├── SKILL.md                 # Core instructions and scaffolding conventions
 │   ├── manifest.json            # Skill metadata and tags
 │   └── references/              # Architectural patterns, CQRS, and Result pattern guides
+├── add-feature/
+│   ├── SKILL.md                 # Interactive feature addition workflow & conventions
+│   ├── manifest.json            # Skill metadata and tags
+│   └── references/              # Interactive questionnaires and feature scaffolding templates
+├── architect/
+│   ├── SKILL.md                 # Senior engineering thinking partner & blueprint guide
+│   ├── manifest.json            # Skill metadata and tags
+│   └── references/              # Decision framework & blueprint template
 ├── explain-this/
 │   ├── SKILL.md                 # Step-by-step code explanation instructions
 │   ├── manifest.json            # Skill metadata and tags
