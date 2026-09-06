@@ -13,15 +13,35 @@ Author: **Adesina Mark Omoniyi**
 | Skill | Version | Description | Tags |
 | :--- | :--- | :--- | :--- |
 | [**`aspnet-core-scaffolding`**](./aspnet-core-scaffolding/) | `1.0.0` | Enterprise ASP.NET Core standards: Clean Architecture, CQRS, Dapper, Dispatcher, FluentValidation, and Result Pattern. | `dotnet`, `aspnetcore`, `clean-architecture`, `cqrs`, `dapper` |
+| [**`scaffold-aspnet-microservices`**](./scaffold-aspnet-microservices/) | `1.0.0` | Microservices architecture: Clean Architecture per service, SharedKernel with IDispatcher & CQRS, YARP Gateway, and Docker. | `dotnet`, `microservices`, `yarp`, `docker`, `sharedkernel`, `cqrs` |
 | [**`add-feature`**](./add-feature/) | `1.0.0` | Interactive vertical slice feature scaffolding with database table, schema, and domain requirement discovery. | `dotnet`, `aspnetcore`, `clean-architecture`, `cqrs`, `feature-scaffolding` |
 | [**`architect`**](./architect/) | `1.0.0` | Senior engineering architectural thinking partner: domain vocabulary alignment, trade-offs, and implementation blueprints. | `software-architecture`, `system-design`, `senior-engineer`, `planning` |
 | [**`explain-this`**](./explain-this/) | `1.0.0` | Structured deep-dive code analysis, execution flow breakdowns, architectural reviews, and edge-case dissection. | `code-explanation`, `code-analysis`, `dotnet`, `csharp` |
 
 ---
 
-## 📦 Multi-Platform Installation Guide
+## 📦 Installation via Skills CLI (`npx skills add`)
 
-Agent skills are markdown-based execution guides (`SKILL.md`) that teach AI agents specific workflows, design patterns, and coding standards. Choose your tool below to install and activate them:
+The fastest way to install these skills is via the official **[Skills CLI](https://skills.sh)** (`npx skills add`). It automatically fetches the skills from GitHub and configures them for your AI coding assistant:
+
+```bash
+# ⚡ Install all skills into your project
+npx skills add developerslearnit/skills
+
+# 🎯 Install a specific skill
+npx skills add developerslearnit/skills --skill scaffold-aspnet-microservices
+npx skills add developerslearnit/skills --skill aspnet-core-scaffolding
+npx skills add developerslearnit/skills --skill add-feature
+npx skills add developerslearnit/skills --skill architect
+npx skills add developerslearnit/skills --skill explain-this
+
+# 🌐 Install globally across all your projects
+npx skills add developerslearnit/skills -g
+```
+
+---
+
+## 🤖 Assistant-Specific Setup
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -38,87 +58,44 @@ Agent skills are markdown-based execution guides (`SKILL.md`) that teach AI agen
 
 ### 1. 🪐 Google Antigravity & Gemini Code Assist
 
-Antigravity natively discovers skills placed in your global config or workspace root.
+Antigravity natively discovers skills placed in your workspace root (`.agents/skills/`) or global config (`~/.gemini/config/skills/`).
 
-#### Option A: Global Installation (Available across all workspaces)
+#### Option A: Workspace Installation (Recommended)
+```bash
+# Installs skills into your current project's .agents/skills/ directory
+npx skills add developerslearnit/skills
+```
 
-- **Windows (PowerShell):**
-  ```powershell
-  # 1. Create global skills directory if it doesn't exist
-  New-Item -ItemType Directory -Force -Path "$HOME\.gemini\config\skills"
-
-  # 2. Clone repository into global skills
-  git clone https://github.com/developerslearnit/skills.git "$HOME\.gemini\config\skills\agent-skills"
-  ```
-
-  > **Note:** If you only want to install a specific skill (e.g. `aspnet-core-scaffolding`):
-  > ```powershell
-  > Copy-Item -Recurse -Force "aspnet-core-scaffolding" "$HOME\.gemini\config\skills\aspnet-core-scaffolding"
-  > ```
-
-- **macOS / Linux (Bash):**
-  ```bash
-  # 1. Create global skills directory
-  mkdir -p ~/.gemini/config/skills
-
-  # 2. Clone repository
-  git clone https://github.com/developerslearnit/skills.git ~/.gemini/config/skills/agent-skills
-  ```
-
-#### Option B: Project-Level Installation (Workspace scoped)
-Place the skill inside `.agents/skills/` at your project root:
-
-- **Using Git Submodule:**
-  ```bash
-  git submodule add https://github.com/developerslearnit/skills.git .agents/skills/agent-skills
-  ```
-
-- **Or Direct Copy:**
-  ```text
-  your-project-root/
-  └── .agents/
-      └── skills/
-          ├── aspnet-core-scaffolding/
-          │   └── SKILL.md
-          ├── add-feature/
-          │   └── SKILL.md
-          ├── architect/
-          │   └── SKILL.md
-          └── explain-this/
-              └── SKILL.md
-  ```
+#### Option B: Global Installation (Available across all workspaces)
+```bash
+# Installs skills into your global agent configuration
+npx skills add developerslearnit/skills -g
+```
 
 ---
 
 ### 2. 🧠 Claude Code & Claude Desktop (Anthropic)
 
 #### Claude Code (CLI)
-Claude Code automatically reads instructions from `CLAUDE.md` in your project root or user home directory.
+```bash
+# Install skills for Claude Code
+npx skills add developerslearnit/skills --agent claude-code
+```
 
-- **Option A: Link or Include in Project `CLAUDE.md`**
-  Add references to the skill files directly into your project's `CLAUDE.md`:
-  ```markdown
-  # Project Guidelines & Agent Skills
+Alternatively, add references directly to your project's `CLAUDE.md`:
+```markdown
+# Project Guidelines & Agent Skills
 
-  When scaffolding ASP.NET Core endpoints, adding features, architecting solutions, or explaining complex logic, follow the instructions in:
-  - `.agents/skills/aspnet-core-scaffolding/SKILL.md`
-  - `.agents/skills/add-feature/SKILL.md`
-  - `.agents/skills/architect/SKILL.md`
-  - `.agents/skills/explain-this/SKILL.md`
-  ```
-
-- **Option B: Add as Slash Commands / Custom Prompts**
-  Copy the skill instructions to `.claude/commands/` or invoke Claude Code with the skill context:
-  ```bash
-  claude --prompt "Read .agents/skills/aspnet-core-scaffolding/SKILL.md and scaffold a new CreateUser command"
-  ```
-
-- **Option C: Global Claude Memory**
-  Add the skill markdown content or references into `~/.claude/CLAUDE.md`.
+When scaffolding ASP.NET Core endpoints, adding features, architecting solutions, or explaining complex logic, follow the instructions in:
+- `.agents/skills/aspnet-core-scaffolding/SKILL.md`
+- `.agents/skills/add-feature/SKILL.md`
+- `.agents/skills/architect/SKILL.md`
+- `.agents/skills/explain-this/SKILL.md`
+```
 
 #### Claude Desktop / Claude Web Projects
 1. Open your **Project** in Claude Web or Desktop.
-2. Under **Project Knowledge**, upload the `SKILL.md` files (e.g. `aspnet-core-scaffolding/SKILL.md`).
+2. Under **Project Knowledge**, upload the `SKILL.md` files.
 3. Under **Custom Instructions**, add:
    > *"When scaffolding code or explaining architecture, strictly adhere to the standards provided in the uploaded SKILL.md files."*
 
@@ -126,63 +103,34 @@ Claude Code automatically reads instructions from `CLAUDE.md` in your project ro
 
 ### 3. ⚡ Cursor AI
 
-Cursor supports `.cursor/rules/` (MDC rule files) and `.cursorrules` in your project root.
+Cursor supports skills via `.cursor/rules/` (MDC rule files) and `.cursorrules`.
 
-#### Option A: Modern MDC Rules (`.cursor/rules/`)
-
-Create `.cursor/rules/` in your project root and copy the skills with the `.mdc` extension:
-
-- **Windows (PowerShell):**
-  ```powershell
-  New-Item -ItemType Directory -Force -Path ".cursor\rules"
-  Copy-Item -Path "aspnet-core-scaffolding\SKILL.md" -Destination ".cursor\rules\aspnet-core-scaffolding.mdc"
-  Copy-Item -Path "add-feature\SKILL.md" -Destination ".cursor\rules\add-feature.mdc"
-  Copy-Item -Path "architect\SKILL.md" -Destination ".cursor\rules\architect.mdc"
-  Copy-Item -Path "explain-this\SKILL.md" -Destination ".cursor\rules\explain-this.mdc"
-  ```
-
-- **macOS / Linux (Bash):**
-  ```bash
-  mkdir -p .cursor/rules
-  cp aspnet-core-scaffolding/SKILL.md .cursor/rules/aspnet-core-scaffolding.mdc
-  cp add-feature/SKILL.md .cursor/rules/add-feature.mdc
-  cp architect/SKILL.md .cursor/rules/architect.mdc
-  cp explain-this/SKILL.md .cursor/rules/explain-this.mdc
-  ```
-
-*Add frontmatter to the `.mdc` file to configure activation triggers (e.g. `globs: **/*.cs` or `alwaysApply: true`).*
-
-#### Option B: Project `.cursorrules`
-Append the contents of the relevant `SKILL.md` directly into the `.cursorrules` file at the root of your project:
+#### Install for Cursor
 ```bash
-cat aspnet-core-scaffolding/SKILL.md >> .cursorrules
+npx skills add developerslearnit/skills --agent cursor
 ```
 
-#### Option C: Global Cursor Rules
-In Cursor, navigate to **Settings > Cursor Settings > General > Rules for AI**, and paste the instructions from `SKILL.md`.
+Or reference the installed skills in your project's `.cursorrules`:
+```markdown
+Read and adhere to the guidelines in:
+- .agents/skills/aspnet-core-scaffolding/SKILL.md
+- .agents/skills/add-feature/SKILL.md
+- .agents/skills/architect/SKILL.md
+- .agents/skills/explain-this/SKILL.md
+```
 
 ---
 
 ### 4. 🤖 GitHub Copilot (VS Code, Visual Studio & JetBrains)
 
-GitHub Copilot supports custom repository instructions via `.github/copilot-instructions.md`.
+GitHub Copilot supports repository instructions via `.github/copilot-instructions.md` and `.vscode/settings.json`.
 
-#### Project-Level Setup (`.github/copilot-instructions.md`)
-
-- **Windows (PowerShell):**
-  ```powershell
-  New-Item -ItemType Directory -Force -Path ".github"
-  Get-Content "aspnet-core-scaffolding\SKILL.md" | Out-File -Append -FilePath ".github\copilot-instructions.md"
-  ```
-
-- **macOS / Linux (Bash):**
-  ```bash
-  mkdir -p .github
-  cat aspnet-core-scaffolding/SKILL.md >> .github/copilot-instructions.md
-  ```
+#### Install for GitHub Copilot
+```bash
+npx skills add developerslearnit/skills --agent github-copilot
+```
 
 #### VS Code Workspace Settings (`.vscode/settings.json`)
-You can configure Copilot Chat custom instructions in your `.vscode/settings.json`:
 ```json
 {
   "github.copilot.chat.codeGeneration.instructions": [
@@ -210,52 +158,37 @@ You can also tag skills directly in Copilot Chat:
 
 ### 5. 🌊 Windsurf / Cascade (Codeium)
 
-Windsurf supports workspace rules through `.windsurfrules` or `.windsurf/rules/`.
+Windsurf supports workspace rules through `.windsurfrules`.
 
-#### Option A: Workspace Rules (`.windsurfrules`)
-Copy or append the skill to `.windsurfrules` in your repository root:
+#### Install for Windsurf
 ```bash
-cat aspnet-core-scaffolding/SKILL.md >> .windsurfrules
+npx skills add developerslearnit/skills --agent windsurf
 ```
 
-#### Option B: Global Memories / Rules
-Add the skill to your global Windsurf configuration:
-- **Windows:** `%USERPROFILE%\.codeium\windsurf\memories\global_rules.md`
-- **macOS / Linux:** `~/.codeium/windsurf/memories/global_rules.md`
+Or append the instructions to `.windsurfrules` in your repository root.
 
 ---
 
 ### 6. 🛠️ Cline / Roo Code (VS Code Extension)
 
-Cline and Roo Code load instructions from `.clinerules` or `.roomodes`.
-
-#### Option A: Workspace `.clinerules`
-Copy the skill content into `.clinerules` in your project root:
+#### Install for Cline / Roo Code
 ```bash
-cat aspnet-core-scaffolding/SKILL.md > .clinerules
+npx skills add developerslearnit/skills --agent cline
 ```
-
-#### Option B: Custom Modes (`.roomodes`)
-Define custom modes (e.g., `Scaffolder` or `Architect`) in `.roomodes` referencing the skill instructions.
 
 ---
 
 ### 7. 💻 Aider & Continue.dev
 
 #### Aider
-Use Aider's `--read` flag or add the skill to your `.aider.conf.yml`:
+Add the skill to your `.aider.conf.yml`:
 ```yaml
-# .aider.conf.yml
 read:
   - .agents/skills/aspnet-core-scaffolding/SKILL.md
 ```
-Or run directly from the command line:
-```bash
-aider --read .agents/skills/aspnet-core-scaffolding/SKILL.md
-```
 
 #### Continue.dev
-Add the skill file or system message in `.continue/config.json`:
+Add the skill file in `.continue/config.json`:
 ```json
 {
   "customCommands": [
@@ -276,7 +209,11 @@ Once installed, AI assistants will adhere to these skill guidelines. You can tri
 
 ### Example Prompts:
 
-- **For ASP.NET Core Scaffolding**:
+- **For ASP.NET Core Microservices Scaffolding**:
+  > *"Scaffold a new ASP.NET Core microservices solution called SupportlyAI with Tickets, Customers, and Knowledge services, YARP API Gateway, SharedKernel, and Docker Compose."*
+  > *"Add a new microservice called IdentityService following the scaffold-aspnet-microservices guidelines."*
+
+- **For Single-Service / Modular Monolith Scaffolding**:
   > *"Scaffold a new CreateSupportTicket command handler using CQRS and the Result pattern."*
   > *"Create a repository and query handler for getting tickets with Dapper and pagination."*
 
@@ -298,8 +235,12 @@ Once installed, AI assistants will adhere to these skill guidelines. You can tri
 
 ```text
 skills/
+├── scaffold-aspnet-microservices/
+│   ├── SKILL.md                 # Microservices standards: Clean Arch, SharedKernel, YARP, Docker
+│   ├── manifest.json            # Skill metadata and tags
+│   └── references/              # SharedKernel, YARP gateway, Docker Compose & architecture guides
 ├── aspnet-core-scaffolding/
-│   ├── SKILL.md                 # Core instructions and scaffolding conventions
+│   ├── SKILL.md                 # Core single-service Clean Arch & scaffolding conventions
 │   ├── manifest.json            # Skill metadata and tags
 │   └── references/              # Architectural patterns, CQRS, and Result pattern guides
 ├── add-feature/

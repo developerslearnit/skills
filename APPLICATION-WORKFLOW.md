@@ -48,18 +48,27 @@ flowchart TD
 
 ## 🏗️ Phase 2 — Foundation & Solution Scaffolding
 
-### 🎯 Skill: [`aspnet-core-scaffolding`](./aspnet-core-scaffolding/SKILL.md)
+### 🎯 Skills:
+- **Modular Monolith / Single Service**: [`aspnet-core-scaffolding`](./aspnet-core-scaffolding/SKILL.md)
+- **Distributed Microservices**: [`scaffold-aspnet-microservices`](./scaffold-aspnet-microservices/SKILL.md)
 
 ### When to Use:
 - When creating a brand-new repository or establishing the foundational architectural skeleton.
-- When configuring solution-wide conventions, dependencies, and build configurations.
+- When choosing between a modular Clean Architecture solution or a distributed Microservices system with YARP Gateway, SharedKernel, and Docker.
+- When configuring solution-wide conventions, dependencies, and Central Package Management.
 
 ### What the Agent Does:
-1. **Creates Clean Architecture Layout**:
-   - `Domain`: Aggregate roots, entities, value objects, domain error definitions, Result pattern primitives (`Result`, `Result<TValue>`, `Error`), and repository contracts.
-   - `Application`: In-process `IDispatcher` (no MediatR), CQRS abstractions (`ICommand`, `IQuery`), and FluentValidation (11.6.0).
-   - `Infrastructure`: Dual-persistence strategy (`DbContext` for writes, Dapper for reads), SQL Server connection factory, and DI registrations.
-   - `Api`: Minimal API setup, routing, OpenAPI/Swagger, and RFC 7807 `ProblemDetails` error mapping.
+1. **Creates Architecture Layout**:
+   * **Single Service / Modular Monolith (`aspnet-core-scaffolding`)**:
+     - `Domain`: Aggregate roots, Result pattern primitives (`Result`, `Result<TValue>`, `Error`), repository contracts.
+     - `Application`: In-process `IDispatcher` (no MediatR), CQRS abstractions (`ICommand`, `IQuery`), and FluentValidation.
+     - `Infrastructure`: Dual-persistence (`DbContext` writes, Dapper reads), DB connection factory, DI registrations.
+     - `Api`: Minimal API setup, routing, OpenAPI/Swagger, and RFC 7807 `ProblemDetails` error mapping.
+   * **Distributed Microservices (`scaffold-aspnet-microservices`)**:
+     - `Shared/SharedKernel`: Centralized CQRS, `IDispatcher`, `Result` pattern, domain base classes, and cross-cutting behaviors.
+     - `Gateways/ApiGateway`: YARP reverse proxy, route clustering, rate limiting, and Swagger aggregation.
+     - `Services/{ServiceName}`: Autonomous Clean Architecture per bounded context (`Domain`, `Application`, `Infrastructure`, `Api`) with database-per-service isolation.
+     - `docker/`: Multi-stage `Dockerfile` per service/gateway and root `docker-compose.yml` with PostgreSQL, Redis, RabbitMQ (MassTransit), and health checks.
 2. **Configures Central Package Management**: Creates `Directory.Packages.props` and `Directory.Build.props` to centralize NuGet package versions.
 3. **Validates & Builds**: Ensures the solution compiles with zero warnings and passes initial architecture tests.
 
@@ -68,7 +77,7 @@ flowchart TD
 "Scaffold a new ASP.NET Core solution called VehicleRental using the standards in aspnet-core-scaffolding."
 ```
 ```text
-"Create a clean architecture solution for an ECommerce inventory service following aspnet-core-scaffolding rules."
+"Use scaffold-aspnet-microservices to scaffold a new microservices solution called SupportlyAI with Tickets, Customers, and Knowledge services, YARP API Gateway, SharedKernel, and Docker Compose."
 ```
 
 ---
@@ -138,6 +147,7 @@ Delivers a structured, 7-layer deep-dive analysis:
 | Phase | Goal | Primary Skill | Core Artifacts Produced |
 | :--- | :--- | :--- | :--- |
 | **1. Design** | Align on vocabulary & resolve trade-offs | [`architect`](./architect/SKILL.md) | Architecture Blueprint & Decision Log |
-| **2. Scaffold** | Build Clean Architecture foundation | [`aspnet-core-scaffolding`](./aspnet-core-scaffolding/SKILL.md) | Solution, Projects, Directory.Packages.props, Dispatcher, DbContext |
+| **2. Scaffold (Single Service)** | Build Clean Architecture foundation | [`aspnet-core-scaffolding`](./aspnet-core-scaffolding/SKILL.md) | Solution, Projects, Directory.Packages.props, Dispatcher, DbContext |
+| **2. Scaffold (Microservices)** | Build Distributed Microservices system | [`scaffold-aspnet-microservices`](./scaffold-aspnet-microservices/SKILL.md) | SharedKernel, YARP ApiGateway, Microservices, Docker Compose |
 | **3. Build** | Add vertical slice features incrementally | [`add-feature`](./add-feature/SKILL.md) | Entity, Command/Query, Validator, EF & Dapper Repos, Minimal API |
 | **4. Review** | Understand, debug, and optimize code | [`explain-this`](./explain-this/SKILL.md) | 7-Section Technical Analysis Breakdown |

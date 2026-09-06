@@ -1,0 +1,26 @@
+{
+    "name": "scaffold-aspnet-microservices",
+    "version": "1.0.0",
+    "description": "Scaffolds enterprise-grade ASP.NET Core Microservices architectures with Clean Architecture per service, a SharedKernel containing CQRS and IDispatcher, YARP API Gateway, and full Docker containerization.",
+    "author": "Adesina Mark Omoniyi",
+    "entryPoint": "SKILL.md",
+    "tags": [
+        "dotnet",
+        "aspnetcore",
+        "microservices",
+        "clean-architecture",
+        "cqrs",
+        "dispatcher",
+        "sharedkernel",
+        "yarp",
+        "api-gateway",
+        "docker",
+        "docker-compose",
+        "masstransit",
+        "rabbitmq",
+        "postgresql",
+        "dapper",
+        "fluentvalidation",
+        "result-pattern"
+    ]
+}
